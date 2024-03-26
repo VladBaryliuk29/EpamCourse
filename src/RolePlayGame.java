@@ -6,6 +6,8 @@ public class RolePlayGame {
     private static final String PLAYER_ONE = "Player one ";
     private static final String KICK_TURN = "choose your kick: 1 - high kick, 2 - middle kick, 3 - low kick";
     private static final String BLOCK_TURN = "choose your block: 1 - high block, 2 - middle block, 3 - low block";
+    public static final String END = " won";
+    public static final String DRAW = "It's draw. Nobody won";
     private static final int HIGH_KICK_DAMAGE = 3;
     private static final int MIDDLE_KICK_DAMAGE = 2;
     private static final int LOW_KICK_DAMAGE = 1;
@@ -85,6 +87,13 @@ public class RolePlayGame {
             }
             System.out.println(playerOneName + " has " + playerOneHealth + " health");
             System.out.println(playerTwoName + " has " + playerTwoHealth + " health");
+        }
+        if(playerOneHealth == playerTwoHealth) {
+            System.out.println(DRAW);
+        } else if(playerOneHealth > 0){
+            System.out.println(playerOneName + END);
+        } else {
+            System.out.println(playerTwoName + END);
         }
     }
 }
