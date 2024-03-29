@@ -28,10 +28,8 @@ public class RolePlayGame {
 
         System.out.println(HELLO_MESSAGE);
 
-        System.out.println(PLAYER_ONE + NAME_MESSAGE);
-        playerOneName = scanner.nextLine();
-        System.out.println(PLAYER_TWO + NAME_MESSAGE);
-        playerTwoName = scanner.nextLine();
+        playerOneName = writeName(scanner, PLAYER_ONE);
+        playerTwoName = writeName(scanner, PLAYER_TWO);
 
 
         System.out.println(playerOneName + " " + playerTwoName);
@@ -102,5 +100,9 @@ public class RolePlayGame {
         } else {
             System.out.println(playerTwoName + END);
         }
+    }
+    public static String writeName(Scanner scanner, String player) {
+        System.out.println(player + NAME_MESSAGE);
+        return scanner.nextLine();
     }
 }
