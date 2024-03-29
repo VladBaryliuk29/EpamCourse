@@ -37,57 +37,64 @@ public class RolePlayGame {
         System.out.println(playerOneName + " " + playerTwoName);
 
         while (playerOneHealth > 0 && playerTwoHealth > 0) {
-            System.out.println(playerOneName + " " + KICK_TURN);
-            playerOneKick = scanner.nextInt();
-            System.out.println(playerOneName + " " + BLOCK_TURN);
-            playerOneBlock = scanner.nextInt();
+            playerOneKick = initializeKick(scanner, playerOneName);
+            playerOneBlock = initializeBlock(scanner, playerOneName);
 
-            System.out.println(playerTwoName + " " + KICK_TURN);
-            playerTwoKick = scanner.nextInt();
-            System.out.println(playerTwoName + " " + BLOCK_TURN);
-            playerTwoBlock = scanner.nextInt();
+            playerTwoKick = initializeKick(scanner, playerTwoName);
+            playerTwoBlock = initializeBlock(scanner, playerTwoName);
+            endTurn();
 
+            playerTwoHealth -= beKicked(playerOneKick, playerTwoBlock);
+            playerOneHealth -= beKicked(playerTwoKick, playerOneBlock);
 
-            System.out.println(playerOneName + " kick: " + playerOneKick + " block " + playerOneBlock);
-            System.out.println(playerTwoName + " kick: " + playerTwoKick + " block " + playerTwoBlock);
+            checkDeath();
 
-
-            if (playerOneKick != playerTwoBlock) {
-                switch (playerOneKick) {
-                    case 1:
-                        playerTwoHealth -= HIGH_KICK_DAMAGE;
-                        break;
-                    case 2:
-                        playerTwoHealth -= MIDDLE_KICK_DAMAGE;
-                        break;
-                    case 3:
-                        playerTwoHealth -= LOW_KICK_DAMAGE;
-                        break;
-                }
-            }
-
-            if (playerTwoKick != playerOneBlock) {
-                switch (playerTwoKick) {
-                    case 1:
-                        playerOneHealth -= HIGH_KICK_DAMAGE;
-                        break;
-                    case 2:
-                        playerOneHealth -= MIDDLE_KICK_DAMAGE;
-                        break;
-                    case 3:
-                        playerOneHealth -= LOW_KICK_DAMAGE;
-                        break;
-                }
-            }
-            if(playerOneHealth < 0) {
-                playerOneHealth = 0;
-            }
-            if(playerTwoHealth < 0) {
-                playerTwoHealth = 0;
-            }
-            System.out.println(playerOneName + " has " + playerOneHealth + " health");
-            System.out.println(playerTwoName + " has " + playerTwoHealth + " health");
+            printHPLeft();
         }
+        endGame();
+    }
+    public static int beKicked(int kick, int block) {
+        int HPLose = 0;
+        if (kick != block) {
+            switch (kick) {
+                case 1:
+                    HPLose = HIGH_KICK_DAMAGE;
+                    break;
+                case 2:
+                    HPLose = MIDDLE_KICK_DAMAGE;
+                    break;
+                case 3:
+                    HPLose = LOW_KICK_DAMAGE;
+                    break;
+            }
+        }
+        return HPLose;
+    }
+    public static int initializeKick(Scanner scanner, String playerName) {
+        System.out.println(playerName + " " + KICK_TURN);
+        return scanner.nextInt();
+    }
+    public static int initializeBlock(Scanner scanner, String playerName) {
+        System.out.println(playerName + " " + BLOCK_TURN);
+        return scanner.nextInt();
+    }
+    public static void endTurn() {
+        System.out.println(playerOneName + " kick: " + playerOneKick + " block: " + playerOneBlock);
+        System.out.println(playerTwoName + " kick: " + playerTwoKick + " block: " + playerTwoBlock);
+    }
+    public static void checkDeath() {
+        if (playerOneHealth < 0) {
+            playerOneHealth = 0;
+        }
+        if (playerTwoHealth < 0) {
+            playerTwoHealth = 0;
+        }
+    }
+    public static void printHPLeft() {
+        System.out.println(playerOneName + " has " + playerOneHealth + " health");
+        System.out.println(playerTwoName + " has " + playerTwoHealth + " health");
+    }
+    public static void endGame() {
         if(playerOneHealth == playerTwoHealth) {
             System.out.println(DRAW);
         } else if(playerOneHealth > 0){
