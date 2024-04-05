@@ -10,6 +10,7 @@ public class multiplicationTable {
             System.out.print(i + " x " + number + " = " + i * number + "      ");
             System.out.print(i + " x " + (number + 1) + " = " + i * (number + 1) + "      ");
             System.out.println(i + " x " + (number + 2) + " = " + i * (number + 2) + "      ");
+            System.out.printf("");
         }
     }
 }
