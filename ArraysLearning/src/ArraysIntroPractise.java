@@ -47,21 +47,21 @@ public class ArraysIntroPractise {
         printArrays(array, arrayTwo);
     }
 
-    public static int[] addTenToAllElements(int[] array) {
+    private static int[] addTenToAllElements(int[] array) {
         for (int i = 0; i < array.length; i++) {
             array[i] += 10;
         }
         return array;
     }
 
-    public static int[] multiplyAllElementsOnFive(int[] array) {
+    private static int[] multiplyAllElementsOnFive(int[] array) {
         for (int i = 0; i < array.length; i++) {
             array[i] *= 5;
         }
         return array;
     }
 
-    public static void printArrays(int[] array, int[] arrayTwo) {
+    private static void printArrays(int[] array, int[] arrayTwo) {
         System.out.println(Arrays.toString(array));
         System.out.println(Arrays.toString(arrayTwo));
     }
