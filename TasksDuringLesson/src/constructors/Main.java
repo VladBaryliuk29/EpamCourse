@@ -1,3 +1,7 @@
+package constructors;
+
+import constructors.Computer;
+
 public class Main {
     public static void main(String[] args) {
         Computer computer1 = new Computer();

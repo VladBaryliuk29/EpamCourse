@@ -1,3 +1,5 @@
+package constructors;
+
 public class Computer {
     private int price;
     private String videoCard;
